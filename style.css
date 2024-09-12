@@ -46,3 +46,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* body width*/
+body{
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* searchbar and its container */
+.searchbar-container{
+	display: flex;
+}
+
+.searchbar{
+	flex-grow: 1;
+}
