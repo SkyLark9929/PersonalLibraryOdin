@@ -47,18 +47,45 @@ table {
 	border-spacing: 0;
 }
 
-/* body width*/
+/* | body width*/
 body{
-	max-width: fit-content;
+	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-/* searchbar and its container */
+/* || header */
+/* ||| library logo */
+.library-logo{
+	width: 100%;
+	margin-top: 6vh;
+	margin-bottom: 6vh;
+}
+
+/* || main */
+main{
+	display: flex;
+	flex-direction: column;
+	gap: 1.4vh;
+}
+
+/* ||| searchbar and add book */
 .searchbar-container{
+	height: 4.7vh;
 	display: flex;
 }
 
 .searchbar{
 	flex-grow: 1;
+	font-size: 1.5rem;
+}
+
+.add-book{
+	max-width: 1200px;
+	width: 100%;
+	height: 4.7vh;
+}
+
+.icon{
+	height: 100%;
 }
