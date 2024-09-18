@@ -89,3 +89,25 @@ main{
 .icon{
 	height: 100%;
 }
+
+/* book styling */
+
+.book-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.title-and-controls{
+	height: 4.7vh;
+	display: flex;
+}
+
+.title-author{
+	flex-grow: 1;
+}
+
+.book-info{
+	height: 4.7vh;
+	display: flex;
+	
+}
