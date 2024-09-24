@@ -49,6 +49,36 @@ table {
 hr{
 	margin: 0;
 }
+
+/* root */
+
+:root{
+	--font-and-logo-color: #1C313C;
+}
+
+/* fonts */
+@font-face {
+	font-family: Ostrovsky;
+	font-weight: bold;
+	src: url(/assets/fonts/ostrovsky/Ostrovsky-Bold.otf);
+}
+
+input{
+	font-family: Ostrovsky;
+	font-size: 1.5rem;
+}
+
+h1{
+	font-family: Ostrovsky;
+	font-size: 1.5rem;
+	color: var(--font-and-logo-color);
+}
+
+p{
+	font-family: Ostrovsky;
+	font-size: 1.5rem;
+	color: var(--font-and-logo-color);
+}
 /* | body width*/
 body{
 	max-width: 1200px;
@@ -106,10 +136,11 @@ main{
 
 .title-author{
 	flex-grow: 1;
+	align-self: center;
 }
 
 .book-info{
 	height: 4.7vh;
 	display: flex;
-	
+	align-items: center;
 }
