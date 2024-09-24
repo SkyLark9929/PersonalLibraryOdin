@@ -144,3 +144,13 @@ main{
 	display: flex;
 	align-items: center;
 }
+
+footer{
+	max-width: 1200px;
+	position: absolute;
+	bottom: 0;
+}
+
+footer>p{
+	text-align: center;
+}
