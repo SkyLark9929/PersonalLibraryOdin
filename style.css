@@ -48,12 +48,16 @@ table {
 }
 hr{
 	margin: 0;
+	height: 2px;
+	background-color: var(--font-and-logo-color);
+	border: none;
 }
 
 /* root */
 
 :root{
 	--font-and-logo-color: #1C313C;
+	--footer-font-color: #1c313c7c;
 }
 
 /* fonts */
@@ -64,8 +68,13 @@ hr{
 }
 
 input{
+	border: none;
 	font-family: Ostrovsky;
 	font-size: 1.5rem;
+}
+
+input:focus{ /* should be in accordance with rules */
+	outline: none;
 }
 
 h1{
@@ -86,6 +95,10 @@ body{
 	margin-right: auto;
 }
 
+button{
+	border: none;
+	background-color: white;
+}
 /* || header */
 /* ||| library logo */
 .library-logo{
@@ -105,6 +118,7 @@ main{
 .searchbar-container{
 	height: 4.7vh;
 	display: flex;
+	border-bottom: solid 2px var(--font-and-logo-color);
 }
 
 .searchbar{
@@ -113,6 +127,7 @@ main{
 }
 
 .add-book{
+	border: solid 2px var(--font-and-logo-color);
 	max-width: 1200px;
 	width: 100%;
 	height: 4.7vh;
@@ -180,4 +195,6 @@ footer{
 
 footer>p{
 	text-align: center;
+	font-size: 1em;
+	color: var(--footer-font-color);
 }
