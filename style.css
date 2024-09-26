@@ -145,6 +145,33 @@ main{
 	align-items: center;
 }
 
+/* TODO: rework the layout for grid */ 
+
+.number-pages{
+	flex-grow: 0.1;
+}
+
+.status{
+	flex-grow: 0.8;
+}
+
+.unread{
+	color: var(--font-and-logo-color);
+}
+
+.inprogress{
+	color: #51A4AC;
+}
+
+.finished{
+	color: #367055;
+}
+
+.progress{
+	flex-grow: 0.1;
+	text-align: end;
+}
+
 footer{
 	max-width: 1200px;
 	position: absolute;
