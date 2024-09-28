@@ -46,12 +46,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-hr{
-	margin: 0;
-	height: 2px;
-	background-color: var(--font-and-logo-color);
-	border: none;
-}
 
 /* root */
 
@@ -140,34 +134,29 @@ main{
 /* book styling */
 
 .book-container{
-	display: flex;
-	flex-direction: column;
+	border-bottom: solid 2px var(--font-and-logo-color);
+
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: repeat(2, 4.7vh);
+
+	grid-template-areas: 
+						'title-author title-author control-buttons'
+						'pages-number status progress';
 }
 
-.title-and-controls{
-	height: 4.7vh;
-	display: flex;
+.book-container p,h1{
+	line-height: 4.7vh;
 }
 
 .title-author{
-	flex-grow: 1;
-	align-self: center;
+	grid-area: title-author;
 }
 
-.book-info{
-	height: 4.7vh;
+.controls-container{
+	grid-area: control-buttons;
 	display: flex;
-	align-items: center;
-}
-
-/* TODO: rework the layout for grid */ 
-
-.number-pages{
-	flex-grow: 0.1;
-}
-
-.status{
-	flex-grow: 0.8;
+	justify-content: flex-end;
 }
 
 .unread{
@@ -183,7 +172,6 @@ main{
 }
 
 .progress{
-	flex-grow: 0.1;
 	text-align: end;
 }
 
