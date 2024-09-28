@@ -5,6 +5,9 @@ function Book(author, title, numberOfPages, status) {
   this.title = title;
   this.numberOfPages = numberOfPages;
   this.status = status;
+
+  //DOM elements of the book
+  this.bookContainer = document.createElement('div', {class: 'book-container'});
 };
 
 function addBookToLibrary(book, library) {
@@ -13,13 +16,11 @@ function addBookToLibrary(book, library) {
 
 function displayBooks(library){
     for(let book of library){
-        for(let property in book){
-            console.log(property, ':', book[property]);
-        };
+      
     };
 };
 
-let book1 = new Book('Tolkien', 'LOTR', '457', 'unread');
+let book1 = new Book('Tolkien', 'the Hobbit', '457', 'unread');
 
 addBookToLibrary(book1, myLibrary);
 displayBooks(myLibrary);
