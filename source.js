@@ -2,6 +2,9 @@ const myLibrary = [];
 let bookContainer, bookHeader, bookControlsContainer, bookEditButton, bookEditIcon,
 bookDeleteButton, bookDeleteIcon, bookPageNumber, bookStatus, bookStatusSpan, bookProgress;
 
+const ADD_BOOK_DIALOG = document.querySelector('.add-book-dialog');
+const ADD_BOOK_BTN = document.querySelector('.add-book');
+ADD_BOOK_BTN.addEventListener('click', displayAddBookDialog);
 const MAIN = document.querySelector('main');
 
 function Book(author, title, numberOfPages, status) {
@@ -9,14 +12,18 @@ function Book(author, title, numberOfPages, status) {
   this.title = title;
   this.numberOfPages = numberOfPages;
   this.status = status;
-
-  //DOM elements of the book
 };
 
+// Add book button and funcitons
 function addBookToLibrary(book, library) {
   library.push(book);
 };
 
+function displayAddBookDialog(){
+  ADD_BOOK_DIALOG.showModal();
+};
+
+// Display books functions
 function displayBooks(library){
     for(let book of library){ // at which level is it possible to reuse the DOM elements?
       //book Container
@@ -44,7 +51,7 @@ function displayBooks(library){
       bookDeleteIcon.classList.add('icon');
       bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
       bookDeleteButton.appendChild(bookDeleteIcon);
-      bookControlsContainer.appendChild(bookEditButton); // is it necessary to repeat it like that or it can be done more elegantly?
+      bookControlsContainer.appendChild(bookEditButton); 
       bookControlsContainer.appendChild(bookDeleteButton);
       bookContainer.appendChild(bookControlsContainer);
 
