@@ -175,6 +175,16 @@ main{
 	text-align: end;
 }
 
+dialog{
+	border: 2px solid var(--font-and-logo-color);
+}
+
+fieldset{
+	border-bottom: 2px solid var(--font-and-logo-color);
+	display: flex;
+	align-items: center;
+}
+
 footer{
 	max-width: 1200px;
 	position: absolute;
