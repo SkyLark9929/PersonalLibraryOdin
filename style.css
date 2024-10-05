@@ -62,13 +62,24 @@ table {
 }
 
 input{
-	border: none;
+	border: 2px solid white;
 	font-family: Ostrovsky;
 	font-size: 1.5rem;
+	color: var(--font-and-logo-color);
 }
 
 input:focus{ /* should be in accordance with rules */
 	outline: none;
+	border: 2px solid var(--font-and-logo-color);
+}
+
+button{
+	border: 2px solid white;
+}
+
+button:focus{
+	outline: none;
+	border: 2px solid var(--font-and-logo-color);
 }
 
 h1{
@@ -121,7 +132,7 @@ main{
 }
 
 .add-book{
-	border: solid 2px var(--font-and-logo-color);
+	border: dashed 2px var(--font-and-logo-color);
 	max-width: 1200px;
 	width: 100%;
 	height: 4.7vh;
@@ -179,10 +190,22 @@ dialog{
 	border: 2px solid var(--font-and-logo-color);
 }
 
+.add-book-dialog > form {
+	display: flex;
+	flex-direction: column;
+	gap: 2vh;
+}
+
 fieldset{
 	border-bottom: 2px solid var(--font-and-logo-color);
 	display: flex;
 	align-items: center;
+}
+
+label{
+	font-family: Ostrovsky;
+	font-size: 1.5rem;
+	color: var(--font-and-logo-color);
 }
 
 footer{

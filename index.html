@@ -44,12 +44,11 @@
             </fieldset>
             <fieldset>
                 <label for="status">STATUS:</label>
-                <input type="text" list="status-list" id="status" name="status">
-                <datalist id="status-list">
-                    <option value="UNREAD"></option>
-                    <option value="INPROGRESS"></option>
-                    <option value="FINISHED"></option>
-                </datalist>
+                <select name="status" id="status">
+                    <option value="UNREAD">UNREAD</option>
+                    <option value="INPROGRESS">INPROGRESS</option>
+                    <option value="FINISHED">FINISHED</option>
+                </select>
             </fieldset>
             <fieldset>
                 <label for="completed-pages">COMPLETED PAGES:</label>
