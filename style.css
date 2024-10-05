@@ -52,6 +52,7 @@ table {
 :root{
 	--font-and-logo-color: #1C313C;
 	--footer-font-color: #1c313c7c;
+	--outline: #C43B39;
 }
 
 /* fonts */
@@ -61,25 +62,17 @@ table {
 	src: url(/assets/fonts/ostrovsky/Ostrovsky-Bold.otf);
 }
 
-input{
+input, select{
 	border: 2px solid white;
 	font-family: Ostrovsky;
 	font-size: 1.5rem;
 	color: var(--font-and-logo-color);
+	background-color: white;
 }
 
-input:focus{ /* should be in accordance with rules */
+input:focus, button:focus, select:focus{ /* should be in accordance with rules */
 	outline: none;
-	border: 2px solid var(--font-and-logo-color);
-}
-
-button{
-	border: 2px solid white;
-}
-
-button:focus{
-	outline: none;
-	border: 2px solid var(--font-and-logo-color);
+	border: 2px solid var(--outline);
 }
 
 h1{
@@ -103,6 +96,7 @@ body{
 button{
 	border: none;
 	background-color: white;
+	border: 2px solid white;
 }
 /* || header */
 /* ||| library logo */
@@ -132,7 +126,7 @@ main{
 }
 
 .add-book{
-	border: dashed 2px var(--font-and-logo-color);
+	border: solid 2px var(--font-and-logo-color);
 	max-width: 1200px;
 	width: 100%;
 	height: 4.7vh;
@@ -200,6 +194,11 @@ fieldset{
 	border-bottom: 2px solid var(--font-and-logo-color);
 	display: flex;
 	align-items: center;
+	gap: 1vh;
+}
+
+fieldset > input, select{
+	flex-grow: 1;
 }
 
 label{
