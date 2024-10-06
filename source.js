@@ -1,5 +1,5 @@
 const myLibrary = [];
-const placeholderBook = new Book('F.M. Dostoevskiy', 'the Possessed', '2421', 'INPROGRESS', '243');
+const placeholderBook = new Book('F.M. Dostoevskiy', 'The Possessed', '2421', 'INPROGRESS', '243');
 
 myLibrary.push(placeholderBook);
 
