@@ -69,14 +69,14 @@ table {
 
 /* fonts */
 @font-face {
-	font-family: Ostrovsky;
+	font-family: 'Ostrovsky';
 	font-weight: bold;
 	src: url(/assets/fonts/ostrovsky/Ostrovsky-Bold.otf);
 }
 
 input, select{
 	border: 2px solid white;
-	font-family: Ostrovsky;
+	font-family: 'Ostrovsky';
 	font-size: var(--font-size);
 	color: var(--font-and-logo-color);
 	background-color: white;
@@ -88,13 +88,13 @@ input:focus, button:focus, select:focus{ /* should be in accordance with rules *
 }
 
 h1{
-	font-family: Ostrovsky;
+	font-family: 'Ostrovsky';
 	font-size: var(--font-size);
 	color: var(--font-and-logo-color);
 }
 
 p{
-	font-family: Ostrovsky;
+	font-family: 'Ostrovsky';
 	font-size: var(--font-size);
 	color: var(--font-and-logo-color);
 }
@@ -213,7 +213,7 @@ fieldset > input, select{
 }
 
 label{
-	font-family: Ostrovsky;
+	font-family: 'Ostrovsky';
 	font-size: var(--font-size);
 	color: var(--font-and-logo-color);
 }
