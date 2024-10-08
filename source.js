@@ -79,12 +79,12 @@ function displayBooks(library){
     //book Controls container and controls
     bookControlsContainer = document.createElement('div');
     bookControlsContainer.classList.add('controls-container');
-    bookEditButton = document.createElement('button');
-    bookEditButton.classList.add('edit');
-    bookEditIcon = document.createElement('img');
-    bookEditIcon.classList.add('icon');
-    bookEditIcon.src = 'assets/icons/pencil-outline.svg';
-    bookEditButton.appendChild(bookEditIcon);
+    // bookEditButton = document.createElement('button');
+    // bookEditButton.classList.add('edit');
+    // bookEditIcon = document.createElement('img');
+    // bookEditIcon.classList.add('icon');
+    // bookEditIcon.src = 'assets/icons/pencil-outline.svg';
+    // bookEditButton.appendChild(bookEditIcon);
     bookDeleteButton = document.createElement('button');
     bookDeleteButton.classList.add('delete');
     bookDeleteIcon = document.createElement('img');
@@ -92,7 +92,7 @@ function displayBooks(library){
     bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
     bookDeleteButton.appendChild(bookDeleteIcon);
     bookDeleteButton.addEventListener('click', (e) => deleteBook(e));
-    bookControlsContainer.appendChild(bookEditButton); 
+    // bookControlsContainer.appendChild(bookEditButton); 
     bookControlsContainer.appendChild(bookDeleteButton);
     bookContainer.appendChild(bookControlsContainer);
     // book Number of pages
