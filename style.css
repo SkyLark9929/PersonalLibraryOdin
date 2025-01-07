@@ -195,7 +195,7 @@ dialog{
 	border: 2px solid var(--font-and-logo-color);
 }
 
-.add-book-dialog > form {
+form {
 	display: flex;
 	flex-direction: column;
 	gap: 0.8vw;
@@ -218,10 +218,16 @@ label{
 	color: var(--font-and-logo-color);
 }
 
-form > button{
+form button{
 	border: 2px solid var(--font-and-logo-color);
+	padding: 0.5vh;
 	font-family: 'Ostrovsky';
 	font-size: var(--font-size);
+}
+
+.are-you-sure fieldset {
+	border: none;
+	justify-content: center;
 }
 
 footer{
