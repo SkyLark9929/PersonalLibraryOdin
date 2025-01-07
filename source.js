@@ -11,7 +11,6 @@ class bookClass{
   }
 
   get bkId(){ // shall not be changed so no setter
-    console.log(this.id);
     return this.id;
   };
 
@@ -21,7 +20,6 @@ class bookClass{
   };
 
   get bkAuthor(){
-    console.log(this.author);
     return this.author;
   };
 
@@ -31,7 +29,6 @@ class bookClass{
   };
 
   get bkTitle(){
-    console.log(this.title);
     return this.title;
   };
 
@@ -41,7 +38,6 @@ class bookClass{
   };
 
   get bkNumberOfPages(){
-    console.log(this.numberOfPages);
     return this.numberOfPages;
   };
 
@@ -51,7 +47,6 @@ class bookClass{
   };
 
   get bkStatus(){
-    console.log(this.status);
     return this.status;
   };
 
@@ -72,7 +67,6 @@ class bookClass{
   };
 
   get bkCompletedPages(){
-    console.log(this.completedPages);
     return this.completedPages;
   };
 };
@@ -85,24 +79,25 @@ function bookKeeper(){
   const addBook = (author, title, numberOfPages, status, completedPages) => {
     bookObj = new bookClass(author, title, numberOfPages, status, completedPages);
     storage.push(bookObj);
-    console.log(storage);
   };
 
-  const rmBook =(id) => {
+  const rmBook = (id) => {
     // find index of book with id
     let bookIndex;
     for(let book of storage){
       if(book.bkId == id){
+        console.log(book.bkId);
+        console.log('ID match');
         bookIndex = storage.indexOf(book);
+        storage.splice(bookIndex, 1);
+      } else {
+        console.log(book.bkId);
+        console.log('No ID match');
       };
     };
-
-    // remove book
-    storage.splice(bookIndex, 1);
   };
 
   const bringAllBooks = () => {
-    console.log(storage);
     return storage;
   };
   
@@ -115,6 +110,8 @@ const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 
 function domController(){
   const main = document.querySelector('main');
   const addBookBtn = document.querySelector('.add-book');
+  const delBookDialog = document.querySelector('.are-you-sure');
+  const confirmDelBookBtn = document.querySelector('#yes-im-sure');
   const confirmAddBookBtn = document.querySelector('.confirm-add-book');
   const addBookDialog = document.querySelector('.add-book-dialog');
   const titleInput = document.querySelector('#title');
@@ -123,6 +120,7 @@ function domController(){
   const statusInput = document.querySelector('#status');
   const completedPagesInput = document.querySelector('#completed-pages');
   const keeper = bookKeeper();
+  let idToDelete;
 
   const displayAllBooks = () => {
     // remove all books from display
@@ -133,8 +131,6 @@ function domController(){
 
     // get all the books in the library
     books = keeper.bringAllBooks();
-    console.log('trying to display books:')
-    console.log(books);
 
     //display books in the library
     for(let book of books){
@@ -154,6 +150,7 @@ function domController(){
       bookControlsContainer.classList.add('controls-container');
       const bookDeleteButton = document.createElement('button');
       bookDeleteButton.classList.add('delete');
+      bookDeleteButton.addEventListener('click', delBookModalHandler);
       const bookDeleteIcon = document.createElement('img');
       bookDeleteIcon.classList.add('icon');
       bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
@@ -189,7 +186,7 @@ function domController(){
     };
   };
 
-  const modalHandler = () => {
+  const addBookModalHandler = () => {
     addBookDialog.showModal();
   };
 
@@ -198,9 +195,23 @@ function domController(){
     displayAllBooks();
   };
 
-  addBookBtn.addEventListener('click', modalHandler);
+  const delBookModalHandler = (e) => {
+    idToDelete = e.currentTarget.parentElement.parentElement.id;
+    console.log(`deleting id ${idToDelete}`);
+    delBookDialog.showModal();
+  };
+
+  const delBook = () => {
+    keeper.rmBook(idToDelete);
+    displayAllBooks();
+    idToDelete = undefined;
+  };
+
+  addBookBtn.addEventListener('click', addBookModalHandler);
+
   confirmAddBookBtn.addEventListener('click', addBook);
-}
+  confirmDelBookBtn.addEventListener('click', delBook);
+};
 
 
-domController()
+domController();
