@@ -1,12 +1,13 @@
 // declaration of book class
 class bookClass{
   constructor(author, title, numberOfPages, status, completedPages){
-    this.id = Date.now.toString(36) + Math.random.toString(36).substring(2); // generates unique ID for the book in the database
+    this.id = Date.now().toString(36) + Math.random().toString(36).substring(2); // generates unique ID for the book in the database
     this.author = author;
     this.title = title;
     this.numberOfPages = numberOfPages;
     this.status = status;
     this.completedPages = completedPages;
+    this.searchSignature = this.author + '' + this.title;
   }
 
   get bkId(){ // shall not be changed so no setter
@@ -67,38 +68,62 @@ class bookClass{
 
 
 // declaring library class
-class libraryClass{
-  constructor(){
-    this.storage = [];
+function bookKeeper(){
+  const storage = [];
+
+  const addBook = (author, title, numberOfPages, status, completedPages) => {
+    bookObj = new bookClass(author, title, numberOfPages, status, completedPages);
+    storage.push(bookObj);
+    console.log(storage);
   };
 
-  get lbStorage(){
-    return this.storage;
-  };
-
-  addBook(book){
-    this.storage.push(book);
-  };
-
-  rmBook(id){
+  const rmBook =(id) => {
     // find index of book with id
     let bookIndex;
-    for(let book of this.storage){
+    for(let book of storage){
       if(book.bkId == id){
-        bookIndex = this.storage.indexOf(book);
+        bookIndex = storage.indexOf(book);
       };
     };
 
     // remove book
-    this.storage.splice(bookIndex, 1);
+    storage.splice(bookIndex, 1);
   };
+
+  const bringAllBooks = () => {
+    console.log(storage);
+    return storage;
+  };
+  
+  return {addBook, rmBook, bringAllBooks};
 };
 
-const library = new libraryClass();
 const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 'NOT STARTED', '0');
 
-library.addBook(testBook);
-console.log(library.lbStorage);
+// dom manipulation
+function domController(){
+  const addBookBtn = document.querySelector('.add-book');
+  const confirmAddBookBtn = document.querySelector('.confirm-add-book');
+  const addBookDialog = document.querySelector('.add-book-dialog');
+  const titleInput = document.querySelector('#title');
+  const authorInput = document.querySelector('#author');
+  const numberOfPagesInput = document.querySelector('#number-of-pages');
+  const statusInput = document.querySelector('#status');
+  const completedPagesInput = document.querySelector('#completed-pages');
+  const keeper = bookKeeper();
 
-library.rmBook(testBook.bkId);
-console.log(library.lbStorage);
+
+  const modalHandler = () => {
+    addBookDialog.showModal();
+  };
+
+  const addBook = () => {
+    keeper.addBook(authorInput.value, titleInput.value, numberOfPagesInput.value, statusInput.value, completedPagesInput.value);
+  };
+
+  addBookBtn.addEventListener('click', modalHandler);
+  confirmAddBookBtn.addEventListener('click', addBook);
+}
+
+
+domController()
