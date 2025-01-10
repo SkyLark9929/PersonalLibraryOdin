@@ -161,70 +161,82 @@ function domController(){
   const displayAllBooks = () => {
     // remove all books from display
     console.log('Trying to display books');
-    let everyBookContainer = document.querySelectorAll('.book-container');
-    for (let container of everyBookContainer){
-      container.remove();
+    let everyPage = document.querySelectorAll('.page');
+    for (let page of everyPage){
+      page.remove();
     };
 
     // get all the books in the library
     books = keeper.bringAllBooks();
 
-    chunkedBooks = divideArrayIntoChunks(books, 6);
+    chunkedBooks = divideArrayIntoChunks(books, 10);
     console.log(chunkedBooks);
 
     //display books in the library
-    for(let book of books){
-      // create book container
-      const container = document.createElement('div');
-      container.id = book.bkId;
-      container.classList.add('book-container');
+    for(let chunk of chunkedBooks){
+      const pageIndex = chunkedBooks.indexOf(chunk) + 1;
+      const pageClass = pageIndex;
+      const page = document.createElement('div');
+      page.classList.add('page');
+      page.classList.add(pageClass);
 
-      // create book header
-      const bookHeader = document.createElement('h1');
-      bookHeader.classList.add('title-author');
-      bookHeader.textContent = `${book.bkTitle} by ${book.bkAuthor}`;
-      container.appendChild(bookHeader);
+      if(pageIndex !== 1){
+        page.style.display = 'none';
+      };
 
-      // create book controls container and controls
-      const bookControlsContainer = document.createElement('div');
-      bookControlsContainer.classList.add('controls-container');
-      const bookDeleteButton = document.createElement('button');
-      bookDeleteButton.classList.add('delete');
-      bookDeleteButton.addEventListener('click', delBookModalHandler);
-      const bookDeleteIcon = document.createElement('img');
-      bookDeleteIcon.classList.add('icon');
-      bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
-      bookDeleteButton.appendChild(bookDeleteIcon);
-      // bookDeleteButton.addEventListener('click', (e) => deleteBook(e));
-      // bookControlsContainer.appendChild(bookEditButton); 
-      bookControlsContainer.appendChild(bookDeleteButton);
-      container.appendChild(bookControlsContainer);
+      for(let book of chunk){
+        // create book container
+        const container = document.createElement('div');
+        container.id = book.bkId;
+        container.classList.add('book-container');
 
-      // book Number of pages
-      const bookPageNumber = document.createElement('p');
-      bookPageNumber.classList.add('number-pages');
-      bookPageNumber.textContent = `PAGES #:${book.bkNumberOfPages}`;
-      container.appendChild(bookPageNumber);
+        // create book header
+        const bookHeader = document.createElement('h1');
+        bookHeader.classList.add('title-author');
+        bookHeader.textContent = `${book.bkTitle} by ${book.bkAuthor}`;
+        container.appendChild(bookHeader);
 
-      // book status
-      const bookStatusP = document.createElement('p');
-      bookStatusP.classList.add('status');
-      bookStatusP.textContent = 'STATUS: ';
-      const bookStatusSpan = document.createElement('span');
-      bookStatusSpan.classList.add(book.bkStatus.toLowerCase());
-      bookStatusSpan.textContent = book.bkStatus;
-      bookStatusP.appendChild(bookStatusSpan);
-      container.appendChild(bookStatusP);
+        // create book controls container and controls
+        const bookControlsContainer = document.createElement('div');
+        bookControlsContainer.classList.add('controls-container');
+        const bookDeleteButton = document.createElement('button');
+        bookDeleteButton.classList.add('delete');
+        bookDeleteButton.addEventListener('click', delBookModalHandler);
+        const bookDeleteIcon = document.createElement('img');
+        bookDeleteIcon.classList.add('icon');
+        bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
+        bookDeleteButton.appendChild(bookDeleteIcon);
+        // bookControlsContainer.appendChild(bookEditButton); 
+        bookControlsContainer.appendChild(bookDeleteButton);
+        container.appendChild(bookControlsContainer);
 
-      // book progress
-      const bookProgress = document.createElement('p');
-      bookProgress.classList.add('progress');
-      bookProgress.textContent = `PROGRESS: ${book.bkProgress}%`; // TODO: replace NaN with '-' if NaN
-      container.appendChild(bookProgress);
+        // book Number of pages
+        const bookPageNumber = document.createElement('p');
+        bookPageNumber.classList.add('number-pages');
+        bookPageNumber.textContent = `PAGES #:${book.bkNumberOfPages}`;
+        container.appendChild(bookPageNumber);
 
-      main.appendChild(container);
+        // book status
+        const bookStatusP = document.createElement('p');
+        bookStatusP.classList.add('status');
+        bookStatusP.textContent = 'STATUS: ';
+        const bookStatusSpan = document.createElement('span');
+        bookStatusSpan.classList.add(book.bkStatus.toLowerCase());
+        bookStatusSpan.textContent = book.bkStatus;
+        bookStatusP.appendChild(bookStatusSpan);
+        container.appendChild(bookStatusP);
+
+        // book progress
+        const bookProgress = document.createElement('p');
+        bookProgress.classList.add('progress');
+        bookProgress.textContent = `PROGRESS: ${book.bkProgress}%`; // TODO: replace NaN with '-' if NaN
+        container.appendChild(bookProgress);
+
+        page.appendChild(container);
     };
+    main.appendChild(page);
   };
+};
 
   const divideArrayIntoChunks = (array, n) => {
     const numberOfChunks = Math.ceil(array.length / n);
