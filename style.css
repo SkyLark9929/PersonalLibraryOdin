@@ -124,6 +124,7 @@ main{
 	display: flex;
 	flex-direction: column;
 	gap: 1.4vh;
+	min-height: 60vh;
 }
 
 /* ||| searchbar and add book */
@@ -237,8 +238,8 @@ form button{
 
 footer{
 	max-width: 1200px;
-	position: absolute;
-	bottom: 0;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
 }
 
 footer>p{

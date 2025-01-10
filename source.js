@@ -100,8 +100,34 @@ function bookKeeper(){
   const bringAllBooks = () => {
     return storage;
   };
+
+  const spawnHarvardClassics = () => {
+    return new Promise(resolve => {
+    fetch('/prefilledbooks/books.json')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+      })
+      .then(json => {
+          booksHarvard = json;
+          console.log(`Loaded json: ${booksHarvard}`);
+      
+          for(let book of booksHarvard.harvard_classics){
+            console.log(`Pushing ${book.title} to the storage`)
+            addBook(book.author, book.title, book.numberOfPages, book.status, book.completedPages);
+          };
+
+          resolve('all books added')
+      })
+      .catch(function () {
+          this.dataError = true;
+      })
+    });
+  };
   
-  return {addBook, rmBook, bringAllBooks};
+  return {addBook, rmBook, bringAllBooks, spawnHarvardClassics};
 };
 
 const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 'NOT STARTED', '0');
@@ -119,11 +145,22 @@ function domController(){
   const numberOfPagesInput = document.querySelector('#number-of-pages');
   const statusInput = document.querySelector('#status');
   const completedPagesInput = document.querySelector('#completed-pages');
+  const fillWithBooksDialog = document.querySelector('.fill-with-books');
+  const fillWithBooksYesBtn = document.querySelector('#yes-fill');
   const keeper = bookKeeper();
   let idToDelete;
 
+
+  const loadBookRepo = () => {
+    keeper.spawnHarvardClassics().then((resolve) => {console.log(`spawn fulfilled ${resolve}`); displayAllBooks()})
+  };
+
+  fillWithBooksYesBtn.addEventListener('click', loadBookRepo);
+  fillWithBooksDialog.showModal();
+
   const displayAllBooks = () => {
     // remove all books from display
+    console.log('Trying to display books');
     let everyBookContainer = document.querySelectorAll('.book-container');
     for (let container of everyBookContainer){
       container.remove();
@@ -131,6 +168,9 @@ function domController(){
 
     // get all the books in the library
     books = keeper.bringAllBooks();
+
+    chunkedBooks = divideArrayIntoChunks(books, 6);
+    console.log(chunkedBooks);
 
     //display books in the library
     for(let book of books){
@@ -184,6 +224,15 @@ function domController(){
 
       main.appendChild(container);
     };
+  };
+
+  const divideArrayIntoChunks = (array, n) => {
+    const numberOfChunks = Math.ceil(array.length / n);
+
+    return [...Array(numberOfChunks)]
+    .map((value, index) => {
+      return array.slice(index * n, (index + 1) * n);
+    });
   };
 
   const addBookModalHandler = () => {
