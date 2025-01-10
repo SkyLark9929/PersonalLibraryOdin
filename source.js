@@ -162,6 +162,7 @@ function domController(){
     // remove all books from display
     console.log('Trying to display books');
     let everyPage = document.querySelectorAll('.page');
+
     for (let page of everyPage){
       page.remove();
     };
@@ -169,18 +170,32 @@ function domController(){
     // get all the books in the library
     books = keeper.bringAllBooks();
 
-    chunkedBooks = divideArrayIntoChunks(books, 10);
+    // divide books into arrays corresponding to the pages
+    chunkedBooks = divideArrayIntoChunks(books, 6);
     console.log(chunkedBooks);
+
+    let pageButtonContainer = document.querySelector('.page-button-container');
+
+    //create page button container
+    if(!pageButtonContainer){
+      pageButtonContainer = document.createElement('div');
+      pageButtonContainer.classList.add('page-button-container');  
+    } else {
+      let everyPageButton = document.querySelectorAll('.page-button');
+      for(let pageButton of everyPageButton){
+        pageButton.remove();
+      };
+    };
 
     //display books in the library
     for(let chunk of chunkedBooks){
-      const pageIndex = chunkedBooks.indexOf(chunk) + 1;
-      const pageClass = pageIndex;
+      const pageIndex = chunkedBooks.indexOf(chunk);
+      const pageNumber = pageIndex + 1;
       const page = document.createElement('div');
       page.classList.add('page');
-      page.classList.add(pageClass);
+      page.classList.add(pageNumber);
 
-      if(pageIndex !== 1){
+      if(pageIndex !== 0){
         page.style.display = 'none';
       };
 
@@ -233,10 +248,20 @@ function domController(){
         container.appendChild(bookProgress);
 
         page.appendChild(container);
+      };
+
+      const pageButton = document.createElement('button');
+      pageButton.classList.add('page-button');
+      pageButton.textContent = pageNumber;
+      pageButton.value = pageNumber;
+      pageButton.addEventListener('click', openDesiredPage)
+
+      main.appendChild(page);
+      pageButtonContainer.appendChild(pageButton);
     };
-    main.appendChild(page);
+
+    main.appendChild(pageButtonContainer);
   };
-};
 
   const divideArrayIntoChunks = (array, n) => {
     const numberOfChunks = Math.ceil(array.length / n);
@@ -246,6 +271,18 @@ function domController(){
       return array.slice(index * n, (index + 1) * n);
     });
   };
+
+  const openDesiredPage = (e) => {
+    let desiredPage = e.target.value;
+    const allPages = document.querySelectorAll('.page');
+    for(let page of allPages){
+      if(page.classList.contains(desiredPage)){
+        page.style.display = 'block';
+      } else {
+        page.style.display = 'none';
+      };
+    };
+  }; 
 
   const addBookModalHandler = () => {
     addBookDialog.showModal();
