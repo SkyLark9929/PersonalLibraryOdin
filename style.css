@@ -230,6 +230,11 @@ form button{
 	justify-content: center;
 }
 
+.fill-with-books fieldset {
+	border: none;
+	justify-content: center;
+}
+
 footer{
 	max-width: 1200px;
 	position: absolute;
