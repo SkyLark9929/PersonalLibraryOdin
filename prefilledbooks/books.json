@@ -1,0 +1,235 @@
+{
+    "harvard_classics" : [
+        {
+            "author"    :   "Benjamin Franklin",
+            "title"     :   "The Autobiography of Benjamin Franklin",
+            "numberOfPages" : "543",
+            "completedPages": "543",
+            "status"        : "COMPLETED"
+        },
+        {
+            "author"    :   "John Woolman",
+            "title"     :   "The Journal of John Woolman",
+            "numberOfPages" : "742",
+            "completedPages": "742",
+            "status"        : "COMPLETED"
+        },
+        {
+            "author"    :   "William Penn",
+            "title"     :   "Fruits of Solitude",
+            "numberOfPages" : "611",
+            "completedPages": "611",
+            "status"        : "COMPLETED"
+        },
+        {
+            "author"    :   "Plato",
+            "title"     :   "Phaedo",
+            "numberOfPages" : "371",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },        
+        {
+            "author"    :   "Plato",
+            "title"     :   "The Apology",
+            "numberOfPages" : "518",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "Plato",
+            "title"     :   "Crito",
+            "numberOfPages" : "742",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "Epictetus",
+            "title"     :   "The Golden Sayings",
+            "numberOfPages" : "453",
+            "completedPages": "242",
+            "status"        : "IN PROGRESS"
+        },
+        {
+            "author"    :   "Marcus Aurelius",
+            "title"     :   "The Meditations",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "Francis Bacon",
+            "title"     :   "Essays, Civil and Moral",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "Francis Bacon",
+            "title"     :   "New Atlantis",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "John Milton",
+            "title"     :   "Areopagitica",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "John Milton",
+            "title"     :   "Tractate of Education",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "author"    :   "Thomas Browne",
+            "title"     :   "Religio Medici",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Complete poems written in English",
+            "author"     :   "John Milton",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Essays",
+            "author"     :   "Ralph Waldo Emerson",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "English Traits",
+            "author"     :   "Ralph Waldo Emerson",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Poems and songs",
+            "author"     :   "Robert Burns",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "The Confessions",
+            "author"     :   "Saint Augustine",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "The Imitation of Christ",
+            "author"     :   "Thomas á Kempis",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }, 
+        {
+            "title"    :   "Agamemnon",
+            "author"     :   "Aeschylus",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }, 
+        {
+            "title"    :   "The Libation Bearers",
+            "author"     :   "Aeschylus",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }, 
+        {
+            "title"    :   "The Furies",
+            "author"     :   "Aeschylus",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }, 
+        {
+            "title"    :   "Prometheus Bound",
+            "author"     :   "Aeschylus",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Oedipus the King",
+            "author"     :   "Sophocles",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Antigone",
+            "author"     :   "Sophocles",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Hippolytus",
+            "author"     :   "Euripides",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "The Bacchae",
+            "author"     :   "Euripides",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "The Frogs",
+            "author"     :   "Aristophanes",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "On Friendship",
+            "author"     :   "Cicero",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }, 
+        {
+            "title"    :   "On Old Age",
+            "author"     :   "Cicero",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Letters",
+            "author"     :   "Cicero",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "Letters",
+            "author"     :   "Pliny the Younger",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        },
+        {
+            "title"    :   "The Wealth of Nations",
+            "author"     :   "Adam Smith",
+            "numberOfPages" : "453",
+            "completedPages": "0",
+            "status"        : "NOT STARTED"
+        }     
+    ]
+}
