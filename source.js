@@ -135,19 +135,24 @@ const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 
 // dom manipulation
 function domController(){
   const main = document.querySelector('main');
+
+  const addBookDialog = document.querySelector('.add-book-dialog');
   const addBookBtn = document.querySelector('.add-book');
+  const confirmAddBookBtn = document.querySelector('.confirm-add-book');
+  const titleInputAdd = document.querySelector('#title-add');
+  const authorInput = document.querySelector('#author-add');
+  const numberOfPagesInputAdd = document.querySelector('#number-of-pages-add');
+  const statusInputAdd = document.querySelector('#status-add');
+  const completedPagesInputAdd = document.querySelector('#completed-pages-add');
+
   const delBookDialog = document.querySelector('.are-you-sure');
   const confirmDelBookBtn = document.querySelector('#yes-im-sure');
-  const confirmAddBookBtn = document.querySelector('.confirm-add-book');
-  const addBookDialog = document.querySelector('.add-book-dialog');
-  const titleInput = document.querySelector('#title');
-  const authorInput = document.querySelector('#author');
-  const numberOfPagesInput = document.querySelector('#number-of-pages');
-  const statusInput = document.querySelector('#status');
-  const completedPagesInput = document.querySelector('#completed-pages');
+
   const fillWithBooksDialog = document.querySelector('.fill-with-books');
   const fillWithBooksYesBtn = document.querySelector('#yes-fill');
+
   const editBookDialog = document.querySelector('.edit-book-dialog');
+
   const keeper = bookKeeper();
   let idToDelete, idToEdit; // these store the right id to be passed to book keeper by respective modal dialog
 
@@ -297,7 +302,7 @@ function domController(){
   };
 
   const addBook = () => {
-    keeper.addBook(authorInput.value, titleInput.value, numberOfPagesInput.value, statusInput.value, completedPagesInput.value);
+    keeper.addBook(authorInput.value, titleInputAdd.value, numberOfPagesInputAdd.value, statusInputAdd.value, completedPagesInputAdd.value);
     displayAllBooks();
   };
 
