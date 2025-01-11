@@ -147,8 +147,9 @@ function domController(){
   const completedPagesInput = document.querySelector('#completed-pages');
   const fillWithBooksDialog = document.querySelector('.fill-with-books');
   const fillWithBooksYesBtn = document.querySelector('#yes-fill');
+  const editBookDialog = document.querySelector('.edit-book-dialog');
   const keeper = bookKeeper();
-  let idToDelete;
+  let idToDelete, idToEdit; // these store the right id to be passed to book keeper by respective modal dialog
 
 
   const loadBookRepo = () => {
@@ -214,6 +215,14 @@ function domController(){
         // create book controls container and controls
         const bookControlsContainer = document.createElement('div');
         bookControlsContainer.classList.add('controls-container');
+        const bookEditButton = document.createElement('button');
+        bookEditButton.classList.add('edit');
+        bookEditButton.addEventListener('click', editBookModalHandler);
+        const bookEditIcon = document.createElement('img');
+        bookEditIcon.classList.add('icon');
+        bookEditIcon.src = 'assets/icons/pencil-outline.svg';
+        bookEditButton.appendChild(bookEditIcon);
+        bookControlsContainer.appendChild(bookEditButton);
         const bookDeleteButton = document.createElement('button');
         bookDeleteButton.classList.add('delete');
         bookDeleteButton.addEventListener('click', delBookModalHandler);
@@ -221,7 +230,6 @@ function domController(){
         bookDeleteIcon.classList.add('icon');
         bookDeleteIcon.src = 'assets/icons/trash-can-outline.svg';
         bookDeleteButton.appendChild(bookDeleteIcon);
-        // bookControlsContainer.appendChild(bookEditButton); 
         bookControlsContainer.appendChild(bookDeleteButton);
         container.appendChild(bookControlsContainer);
 
@@ -295,7 +303,6 @@ function domController(){
 
   const delBookModalHandler = (e) => {
     idToDelete = e.currentTarget.parentElement.parentElement.id;
-    console.log(`deleting id ${idToDelete}`);
     delBookDialog.showModal();
   };
 
@@ -303,6 +310,11 @@ function domController(){
     keeper.rmBook(idToDelete);
     displayAllBooks();
     idToDelete = undefined;
+  };
+
+  const editBookModalHandler = (e) => {
+    idToEdit = e.currentTarget.parentElement.parentElement.id;
+    editBookDialog.showModal();
   };
 
   addBookBtn.addEventListener('click', addBookModalHandler);
