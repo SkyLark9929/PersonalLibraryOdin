@@ -81,6 +81,26 @@ function bookKeeper(){
     storage.push(bookObj);
   };
 
+  const editBook = (id, author, title, numberOfPages, status, completedPages) => {
+    for(let book of storage){
+      if(book.bkId == id){
+        book.bkAuthor = author;
+        book.bkTitle = title;
+        book.bkNumberOfPages = numberOfPages;
+        book.bkStatus = status;
+        book.bkCompletedPages = completedPages;
+      };
+    };
+  };
+
+  const findById = (id) => {
+    for(let book of storage){
+      if(book.bkId == id){
+        return book;
+      };
+    };
+  };
+
   const rmBook = (id) => {
     // find index of book with id
     let bookIndex;
@@ -127,7 +147,7 @@ function bookKeeper(){
     });
   };
   
-  return {addBook, rmBook, bringAllBooks, spawnHarvardClassics};
+  return {addBook, rmBook, bringAllBooks, spawnHarvardClassics, editBook, findById};
 };
 
 const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 'NOT STARTED', '0');
@@ -140,7 +160,7 @@ function domController(){
   const addBookBtn = document.querySelector('.add-book');
   const confirmAddBookBtn = document.querySelector('.confirm-add-book');
   const titleInputAdd = document.querySelector('#title-add');
-  const authorInput = document.querySelector('#author-add');
+  const authorInputAdd = document.querySelector('#author-add');
   const numberOfPagesInputAdd = document.querySelector('#number-of-pages-add');
   const statusInputAdd = document.querySelector('#status-add');
   const completedPagesInputAdd = document.querySelector('#completed-pages-add');
@@ -152,6 +172,12 @@ function domController(){
   const fillWithBooksYesBtn = document.querySelector('#yes-fill');
 
   const editBookDialog = document.querySelector('.edit-book-dialog');
+  const titleInputEdit = document.querySelector('#title-edit');
+  const authorInputEdit = document.querySelector('#author-edit');
+  const numberOfPagesInputEdit = document.querySelector('#number-of-pages-edit');
+  const statusInputEdit = document.querySelector('#status-edit');
+  const completedPagesInputEdit = document.querySelector('#completed-pages-edit');
+  const confirmEditBook = document.querySelector('.confirm-edit-book');
 
   const keeper = bookKeeper();
   let idToDelete, idToEdit; // these store the right id to be passed to book keeper by respective modal dialog
@@ -257,7 +283,7 @@ function domController(){
         // book progress
         const bookProgress = document.createElement('p');
         bookProgress.classList.add('progress');
-        bookProgress.textContent = `PROGRESS: ${book.bkProgress}%`; // TODO: replace NaN with '-' if NaN
+        bookProgress.textContent = `PROGRESS: ${book.bkProgress}%`;
         container.appendChild(bookProgress);
 
         page.appendChild(container);
@@ -302,7 +328,7 @@ function domController(){
   };
 
   const addBook = () => {
-    keeper.addBook(authorInput.value, titleInputAdd.value, numberOfPagesInputAdd.value, statusInputAdd.value, completedPagesInputAdd.value);
+    keeper.addBook(authorInputAdd.value, titleInputAdd.value, numberOfPagesInputAdd.value, statusInputAdd.value, completedPagesInputAdd.value);
     displayAllBooks();
   };
 
@@ -319,13 +345,33 @@ function domController(){
 
   const editBookModalHandler = (e) => {
     idToEdit = e.currentTarget.parentElement.parentElement.id;
+    const bookToEdit = keeper.findById(idToEdit);
+    titleInputEdit.value = bookToEdit.bkTitle;
+    authorInputEdit.value = bookToEdit.bkAuthor;
+    numberOfPagesInputEdit.value = bookToEdit.bkNumberOfPages;
+    statusInputEdit.value = bookToEdit.bkStatus;
+    completedPagesInputEdit.value = bookToEdit.bkCompletedPages;
+
     editBookDialog.showModal();
+  };
+
+  const editBook = (e) => {
+    const title = titleInputEdit.value;
+    const author = authorInputEdit.value;
+    const numberOfPages = numberOfPagesInputEdit.value;
+    const status = statusInputEdit.value;
+    const completedPages = completedPagesInputEdit.value;
+
+    keeper.editBook(idToEdit, author, title, numberOfPages, status, completedPages);
+    idToEdit = undefined;
+    displayAllBooks()
   };
 
   addBookBtn.addEventListener('click', addBookModalHandler);
 
   confirmAddBookBtn.addEventListener('click', addBook);
   confirmDelBookBtn.addEventListener('click', delBook);
+  confirmEditBook.addEventListener('click', editBook);
 };
 
 
