@@ -77,7 +77,7 @@ function bookKeeper(){
   const storage = [];
 
   const addBook = (author, title, numberOfPages, status, completedPages) => {
-    bookObj = new bookClass(author, title, numberOfPages, status, completedPages);
+    bookObj = new bookClass(author.toLowerCase(), title.toLowerCase(), numberOfPages.toLowerCase(), status.toLowerCase(), completedPages.toLowerCase());
     storage.push(bookObj);
   };
 
@@ -117,8 +117,18 @@ function bookKeeper(){
     };
   };
 
-  const bringAllBooks = () => {
-    return storage;
+  const bringBooks = (query) => {
+    let selection = [];
+    if(query != ''){
+      for(book of storage){
+        if(book.bkAuthor.includes(query) || book.bkTitle.includes(query)){
+          selection.push(book);
+        };
+      };
+    } else {
+      selection = storage;
+    };
+    return selection;
   };
 
   const spawnHarvardClassics = () => {
@@ -147,7 +157,7 @@ function bookKeeper(){
     });
   };
   
-  return {addBook, rmBook, bringAllBooks, spawnHarvardClassics, editBook, findById};
+  return {addBook, rmBook, bringAllBooks: bringBooks, spawnHarvardClassics, editBook, findById};
 };
 
 const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 'NOT STARTED', '0');
@@ -155,6 +165,8 @@ const testBook = new bookClass('F.M. Dostoevsky', 'Brothers Karamazov', '1254', 
 // dom manipulation
 function domController(){
   const main = document.querySelector('main');
+  const searchbar = document.querySelector('.searchbar');
+  const searchButton = document.querySelector('.search-button');
 
   const addBookDialog = document.querySelector('.add-book-dialog');
   const addBookBtn = document.querySelector('.add-book');
@@ -199,8 +211,8 @@ function domController(){
       page.remove();
     };
 
-    // get all the books in the library
-    books = keeper.bringAllBooks();
+    // get books according to the search query all books if query is empty
+    books = keeper.bringAllBooks(searchbar.value.toLowerCase());
 
     // divide books into arrays corresponding to the pages
     chunkedBooks = divideArrayIntoChunks(books, 6);
@@ -367,11 +379,19 @@ function domController(){
     displayAllBooks()
   };
 
+  const enterPressHandler = (e) => {
+    if(e.keyCode == 13){
+      displayAllBooks();
+    };
+  };
+
   addBookBtn.addEventListener('click', addBookModalHandler);
 
   confirmAddBookBtn.addEventListener('click', addBook);
   confirmDelBookBtn.addEventListener('click', delBook);
   confirmEditBook.addEventListener('click', editBook);
+  searchButton.addEventListener('click', displayAllBooks);
+  searchbar.addEventListener('keyup', enterPressHandler);
 };
 
 
